@@ -1,47 +1,30 @@
-habit_info = ("Reading", True, 7, 218.6)
-print(habit_info)
+grades = {
+    "Alice":   88,
+    "Bob":     73,
+    "Charlie": 95,
+    "Diana":   61,
+    "Eve":     82,
+}
 
-weekly_habits = (1, 0, 0, 1, 0, 0, 1)
-print(weekly_habits)
+print("=" * 38)
+print("GRADE BOOK")
+print("=" * 38)
 
-print("Total days tracked:", len(weekly_habits))
+total = 0
+for score in grades.values():
+    total = total + score
+average = total / len(grades)
+print(f"Class average : {average:.1f}")
 
-print("Day 1 status:", weekly_habits[0])
-print("Day 4 status:", weekly_habits[3])
+top_student    = max(grades, key=grades.get)
+bottom_student = min(grades, key=grades.get)
+print(f"Highest score : {top_student} ({grades[top_student]})")
+print(f"Lowest score  : {bottom_student} ({grades[bottom_student]})")
+print()
 
-first_three_days = weekly_habits[0:3]
-print("First three days:", first_three_days)
- 
-weekend_days = weekly_habits[5:7]
-print("Weekend days:", weekend_days)
-
-weekly_habits = weekly_habits + (1,)
-print("After adding one more day:", weekly_habits)
-
-completed = weekly_habits.count(1)
-missed = weekly_habits.count(0)
- 
-print("Completed days:", completed)
-print("Missed days:", missed)
-
-done = 0
-not_done = 0
- 
-for i in range(0, len(weekly_habits)):
-    if weekly_habits[i] == 1:
-        done += 1
-    else:
-        not_done += 1
- 
-if done > not_done:
-    print("Great habit progress!")
+name = input("Look up a student (enter name): ")
+score = grades.get(name, None)
+if score is not None:
+    print(f"{name}'s score: {score}")
 else:
-    print("Try to be more consistent!")
-
-print("")
-print("===== WEEKLY HABIT TRACKER =====")
-print("Habit Name:", habit_info[0])
-print("Weekly Record:", weekly_habits)
-print("Completed:", done)
-print("Missed:", not_done)
-print("================================")
+    print(f"{name} was not found in the grade book.")
